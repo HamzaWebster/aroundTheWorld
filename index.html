@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the World 🌍 | Discover Beautiful Destinations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Palette */
+            --color-primary: #C75B39;
+            --color-primary-dark: #A84829;
+            --color-primary-light: #E07B5A;
+
+            /* Secondary */
+            --color-secondary: #2D5A27;
+            --color-secondary-dark: #1E3D19;
+            --color-secondary-light: #4A8A42;
+
+            /* Structural */
+            --color-navy: #1E3A5F;
+            --color-navy-dark: #152A45;
+            --color-navy-light: #2E4F7A;
+
+            /* Accents */
+            --color-sand: #D4A574;
+            --color-sand-dark: #B8895A;
+            --color-sand-light: #E8C9A8;
+
+            /* Neutrals */
+            --color-cream: #FDF8F3;
+            --color-sage: #F4F7F4;
+            --color-stone: #6B6B6B;
+            --color-charcoal: #2D2D2D;
+            --color-white: #FFFFFF;
+
+            /* Accent Colors */
+            --color-gold: #C9A227;
+            --color-sky: #5B9BD5;
+            --color-coral: #FF6B6B;
+
+            /* Bootstrap Overrides */
+            --bs-primary: var(--color-primary);
+            --bs-secondary: var(--color-secondary);
+            --bs-info: var(--color-navy);
+            --bs-warning: var(--color-sand);
+
+            /* Typography */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+            --shadow-glow: 0 4px 20px rgba(199, 91, 57, 0.3);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar - Glassmorphism */
+        .navbar {
+            transition: all 0.4s ease;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            background-color: var(--color-navy) !important;
+            box-shadow: var(--shadow-md);
+            padding: 0.75rem 0;
+        }
+
+        .navbar .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 70%;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--color-primary-light) !important;
+        }
+
+        /* Hero Section - Fullscreen Immersive */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920') center/cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    rgba(30, 58, 95, 0.85) 0%,
+                    rgba(30, 58, 95, 0.6) 50%,
+                    rgba(199, 91, 57, 0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
+
+        .hero-cta {
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border: none;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(199, 91, 57, 0.4);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-sand));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--color-stone);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Story Section - Alternating Layout */
+        .story-section {
+            overflow: hidden;
+        }
+
+        .story-card {
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+            margin: 4rem 0;
+        }
+
+        .story-card:nth-child(even) .story-image {
+            order: 2;
+        }
+
+        .story-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-image-wrapper img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .story-image-wrapper:hover img {
+            transform: scale(1.08);
+        }
+
+        .story-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-sand) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .story-image-wrapper:hover::before {
+            opacity: 0.2;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-charcoal);
+        }
+
+        .story-content p {
+            color: var(--color-stone);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mission Cards */
+        .mission-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
+        }
+
+        .mission-card h5 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card p {
+            color: var(--color-stone);
+            margin: 0;
+        }
+
+        /* Experience Grid */
+        .experience-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .experience-item:hover {
+            background: white;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .experience-item h6 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-secondary);
+        }
+
+        .experience-item p {
+            font-size: 0.9rem;
+            color: var(--color-stone);
+            margin: 0;
+        }
+
+        /* Team Cards */
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.75rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .team-card h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--color-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-bio {
+            color: var(--color-stone);
+            font-size: 0.9rem;
+        }
+
+        /* Destination Cards - Modern Design */
+        .destination-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .destination-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .destination-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .destination-card:hover .destination-image-wrapper img {
+            transform: scale(1.15);
+        }
+
+        .destination-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .destination-card:hover .destination-overlay {
+            opacity: 1;
+        }
+
+        .destination-content {
+            padding: 1.5rem;
+        }
+
+        .destination-content h5 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .destination-content p {
+            color: var(--color-stone);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .destination-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .destination-btn:hover {
+            color: var(--color-primary-dark);
+            gap: 0.75rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            animation: ctaShine 3s ease-in-out infinite;
+        }
+
+        @keyframes ctaShine {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20%, 20%);
+            }
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-navy);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .story-card {
+                flex-direction: column;
+                margin: 2rem 0;
+            }
+
+            .story-card:nth-child(even) .story-image {
+                order: 0;
+            }
+
+            .story-image-wrapper img {
+                height: 250px;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .mission-card {
+                padding: 1.5rem;
+            }
+
+            .destination-image-wrapper {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: transparent;">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🌍 Around the World</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country1.html">Japan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country2.html">Italy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country3.html">Brazil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country4.html">Australia</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title text-white">Around the World 🌍</h1>
+            <p class="hero-subtitle text-white-50">Discover the most beautiful destinations on Earth</p>
+            <div class="hero-cta">
+                <a href="#destinations" class="btn btn-primary-custom">Start Exploring</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About/Story Section -->
+    <section class="section" style="background-color: var(--color-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Discover the World Through Our Stories</h2>
+                <p class="section-subtitle mx-auto">Travel is more than just visiting new places—it's about connecting
+                    with different cultures</p>
+            </div>
+
+            <!-- Story 1 -->
+            <div class="row align-items-center story-section g-5">
+                <div class="col-lg-6">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800"
+                            alt="Cultural Journey">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="story-content">
+                        <h3>Connect Through Stories</h3>
+                        <p>Through personal narratives and authentic voices from people around the globe, we bring you
+                            closer to the heart of each destination. From the bustling streets of Tokyo to the serene
+                            beaches of Australia, every story paints a unique picture.</p>
+                        <p>Our travelers share their genuine experiences—the hidden gems they discovered, the locals who
+                            touched their hearts, and the moments that changed their perspective forever.</p>
+                        <a href="#" class="destination-btn">Read Stories →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="row align-items-center story-section g-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800"
+                            alt="Visual Journey">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="story-content">
+                        <h3>Experience Through All Senses</h3>
+                        <p>We believe the best way to experience a place is through a mix of stunning visuals, immersive
+                            audio, and heartfelt storytelling. Join us as we explore the sights, sounds, and spirit of
+                            destinations that inspire wanderlust.</p>
+                        <p>Let our curated galleries, ambient soundscapes, and travel videos transport you to distant
+                            lands, igniting your passion for exploration.</p>
+                        <a href="#" class="destination-btn">Explore Media →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section" style="background-color: var(--color-sage);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="section-subtitle mx-auto">Bringing the world closer together through shared experiences</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">🌍</div>
+                        <h5>Promoting Cultural Diversity</h5>
+                        <p>We celebrate the rich tapestry of cultures that make our world beautiful and unique.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">🎤</div>
+                        <h5>Sharing Authentic Voices</h5>
+                        <p>Real stories from real people who call these places home.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon">🤝</div>
+                        <h5>Connecting Through Stories</h5>
+                        <p>Building bridges across borders through the power of shared experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" style="background-color: var(--color-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">What You'll Explore</h2>
+                <p class="section-subtitle mx-auto">Curated experiences for the modern traveler</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">🏛️</span>
+                        <h6>Cultural Insights</h6>
+                        <p>Deep dives into local traditions</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">👣</span>
+                        <h6>Local Experiences</h6>
+                        <p>Hidden gems off the beaten path</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">📸</span>
+                        <h6>Photo Galleries</h6>
+                        <p>Stunning visual journeys</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">🎧</span>
+                        <h6>Audio Stories</h6>
+                        <p>Immersive soundscapes</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">🎬</span>
+                        <h6>Travel Videos</h6>
+                        <p>Inspiring footage</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="experience-item">
+                        <span class="experience-icon">🗺️</span>
+                        <h6>Destination Guides</h6>
+                        <p>Plan your adventure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section" style="background-color: var(--color-sage);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Meet the Creators</h2>
+                <p class="section-subtitle mx-auto">The passionate team behind your journey</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="team-card text-center p-4">
+                        <div class="team-avatar">SC</div>
+                        <h5>Sarah Chen</h5>
+                        <p class="team-role">Content Director</p>
+                        <p class="team-bio">Crafting compelling stories that transport you across continents</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card text-center p-4">
+                        <div class="team-avatar">MR</div>
+                        <h5>Marcus Rivera</h5>
+                        <p class="team-role">Visual Storyteller</p>
+                        <p class="team-bio">Capturing breathtaking moments through lens and sound</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card text-center p-4">
+                        <div class="team-avatar">ET</div>
+                        <h5>Emma Thompson</h5>
+                        <p class="team-role">Community Lead</p>
+                        <p class="team-bio">Connecting with travelers and sharing authentic voices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="section" id="destinations" style="background-color: var(--color-white);">
+        <div class="container">
+            <div class="text-center mb-2">
+                <p class="text-uppercase mb-2"
+                    style="color: var(--color-primary); font-weight: 600; letter-spacing: 2px;">Begin Your Adventure</p>
+                <h2 class="section-title">Popular Destinations</h2>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <!-- Japan -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="destination-card">
+                        <div class="destination-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600" alt="Japan">
+                            <div class="destination-overlay"></div>
+                        </div>
+                        <div class="destination-content">
+                            <h5>Japan</h5>
+                            <p>Experience the perfect blend of ancient traditions and modern technology.</p>
+                            <a href="country1.html" class="destination-btn">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Italy -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="destination-card">
+                        <div class="destination-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600" alt="Italy">
+                            <div class="destination-overlay"></div>
+                        </div>
+                        <div class="destination-content">
+                            <h5>Italy</h5>
+                            <p>Explore the rich history, art, and cuisine of the Mediterranean gem.</p>
+                            <a href="country2.html" class="destination-btn">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brazil -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="destination-card">
+                        <div class="destination-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600" alt="Brazil">
+                            <div class="destination-overlay"></div>
+                        </div>
+                        <div class="destination-content">
+                            <h5>Brazil</h5>
+                            <p>Immerse yourself in vibrant culture, samba rhythms, and stunning nature.</p>
+                            <a href="country3.html" class="destination-btn">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Australia -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="destination-card">
+                        <div class="destination-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=600"
+                                alt="Australia">
+                            <div class="destination-overlay"></div>
+                        </div>
+                        <div class="destination-content">
+                            <h5>Australia</h5>
+                            <p>Discover unique wildlife, stunning beaches, and the Outback adventure.</p>
+                            <a href="country4.html" class="destination-btn">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section text-center text-white">
+        <div class="container position-relative">
+            <h2>Start Your Journey</h2>
+            <p class="lead mb-4" style="opacity: 0.9;">Ready to explore the world? Your adventure awaits.</p>
+            <a href="#destinations" class="btn btn-light btn-lg px-5">Explore Destinations</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand">🌍 Around the World</div>
+                    <p style="opacity: 0.7; max-width: 300px;">Discover beautiful destinations and connect with cultures
+                        around the globe.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-uppercase mb-3" style="letter-spacing: 1px;">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="country1.html">Japan</a></li>
+                        <li><a href="country2.html">Italy</a></li>
+                        <li><a href="country3.html">Brazil</a></li>
+                        <li><a href="country4.html">Australia</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-uppercase mb-3" style="letter-spacing: 1px;">Connect</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">© 2026 Around the World 🌍. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.style.backgroundColor = 'var(--color-navy)';
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
