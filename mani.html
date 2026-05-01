@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani, Greece - Around the World 🌍</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #C75B39;
+            --color-primary-dark: #A84829;
+            --color-primary-light: #E07B5A;
+            --color-secondary: #2D5A27;
+            --color-secondary-dark: #1E3D19;
+            --color-secondary-light: #4A8A42;
+            --color-navy: #1E3A5F;
+            --color-navy-dark: #152A45;
+            --color-navy-light: #2E4F7A;
+            --color-sand: #D4A574;
+            --color-cream: #FDF8F3;
+            --color-sage: #F4F7F4;
+            --color-stone: #6B6B6B;
+            --color-charcoal: #2D2D2D;
+            --color-white: #FFFFFF;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+            --shadow-glow: 0 4px 20px rgba(199, 91, 57, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            transition: all 0.4s ease;
+            padding: 1rem 0;
+            background-color: var(--color-navy) !important;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 70%;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--color-primary-light) !important;
+        }
+
+        /* Hero */
+        .country-hero {
+            min-height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .country-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1920') center/cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .country-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.85) 0%, rgba(30, 58, 95, 0.5) 100%);
+        }
+
+        .country-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .country-hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .country-hero .lead {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-sand));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--color-stone);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Description */
+        .description-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .description-card h2 {
+            margin-bottom: 1.5rem;
+            color: var(--color-charcoal);
+        }
+
+        .description-card p {
+            color: var(--color-stone);
+            margin-bottom: 1.5rem;
+        }
+
+        .description-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Media Section */
+        .media-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .media-card iframe,
+        .media-card audio {
+            width: 100%;
+            border: none;
+        }
+
+        .media-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .media-card h5 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .media-card p {
+            color: var(--color-stone);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            animation: ctaShine 3s ease-in-out infinite;
+        }
+
+        @keyframes ctaShine {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20%, 20%);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-navy);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+
+            .description-card {
+                padding: 1.5rem;
+            }
+
+            .country-hero {
+                min-height: 50vh;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: -60px;
+        }
+
+        .lightbox-next {
+            right: -60px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-nav {
+                padding: 0.5rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        .gallery-item {
+            cursor: pointer;
+        }
+
+        .gallery-item .zoom-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover .zoom-overlay {
+            opacity: 1;
+        }
+
+        .zoom-overlay span {
+            color: white;
+            font-size: 2rem;
+            transform: scale(0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .zoom-overlay span {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">🌍 Around the World</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country1.html">Japan</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="mani.html">Mani</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cairo.html">Cairo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="country4.html">Australia</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="country-hero">
+        <div class="country-hero-bg"></div>
+        <div class="country-hero-overlay"></div>
+        <div class="country-hero-content">
+            <h1 class="text-white">Mani, Greece</h1>
+            <p class="text-white-50">A historic Greek city on the stunning Mani peninsula</p>
+        </div>
+    </header>
+
+
+    <!-- Video Section -->
+    <section class="section" style="background-color: var(--color-sage);">
+        <div class="container">
+            <div class="text-center mb-1">
+                <h2 class="section-title">Experience Mani, Greece</h2>
+                <p class="section-subtitle mx-auto">Immerse yourself in Mani's coastal culture</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-12">
+                    <div class="media-card">
+                        <video controls height="515" style="width: 100%; display: block; background: black;"
+                            preload="metadata">
+                            <source src="mani.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="card-body">
+                            <h5>Discover Mani, Greece</h5>
+                            <p>A visual journey through the heart of the Mani peninsula</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="section" style="background-color: var(--color-cream);">
+        <div class="container">
+            <div class="description-card">
+                <h2>Discover Mani, Greece</h2>
+                <p>Mani is a legendary region in southern Greece known for its dramatic coastline, ancient tower
+                    villages,
+                    and rugged Mediterranean beauty. This city offers a unique blend of local tradition and coastal
+                    adventure.</p>
+                <p>The Mani peninsula is famous for its stone-built villages, Byzantine churches, and wild landscapes.
+                    Travelers can explore winding mountain roads, hidden coves, and seaside tavernas serving fresh Greek
+                    seafood.</p>
+                <p>Within Mani, you can discover traditional villages like Areopoli and Kardamyli, each rich with local
+                    history and warm hospitality. The region's ancient architecture and natural scenery make it an ideal
+                    destination for explorers.</p>
+                <p>From the dramatic cliffs at Cape Tainaron to the tranquil olive groves inland, Mani offers a peaceful
+                    escape with authentic Greek charm and unforgettable views.</p>
+                <p class="mb-0">Enjoy local cuisine, sea breezes, and the captivating culture of a city that feels both
+                    timeless and alive. Mani, Greece is a hidden gem on the Peloponnese coast.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" style="background-color: var(--color-sage);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Photo Gallery</h2>
+                <p class="section-subtitle mx-auto">Experience the beauty of Mani, Greece through our lens</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="0">
+                        <img src="./mani/07.jpg" alt="Mani tower village">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="1">
+                        <img src="./mani/03.jpg" alt="Mani coastal cliffs">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="2">
+                        <img src="./mani/04.jpg" alt="Kardamyli harbor">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="3">
+                        <img src="./mani/05.jpg" alt="Mani olive groves">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="4">
+                        <img src="./mani/02.jpg" alt="Cape Tainaron cliffs">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item" data-index="5">
+                        <img src="./mani/01.jpg" alt="Greek taverna dining">
+                        <div class="zoom-overlay"><span>🔍</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- CTA Section -->
+    <section class="section cta-section text-center text-white py-5">
+        <div class="container position-relative">
+            <h2>Ready to Explore Mani?</h2>
+            <p class="lead mb-4" style="opacity: 0.9;">Start planning your Mani, Greece adventure today</p>
+            <a href="index.html" class="btn btn-light btn-lg px-5">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand">🌍 Around the World</div>
+                    <p style="opacity: 0.7; max-width: 300px;">Discover beautiful destinations and connect with cultures
+                        around the globe.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-uppercase mb-3" style="letter-spacing: 1px;">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="country1.html">Japan</a></li>
+                        <li><a href="mani.html">Mani</a></li>
+                        <li><a href="cairo.html">Cairo</a></li>
+                        <li><a href="country4.html">Australia</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-uppercase mb-3" style="letter-spacing: 1px;">Connect</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">© 2026 Around the World 🌍. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <button class="lightbox-nav lightbox-prev" aria-label="Previous">&#8249;</button>
+            <img src="" alt="Gallery Image" id="lightbox-img">
+            <button class="lightbox-nav lightbox-next" aria-label="Next">&#8250;</button>
+        </div>
+    </div>
+
+    <script>
+        // Lightbox functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+
+        // Collect all gallery images
+        const images = Array.from(galleryItems).map(item => ({
+            src: item.querySelector('img').src.replace('w=600', 'w=1200'),
+            alt: item.querySelector('img').alt
+        }));
+
+        let currentIndex = 0;
+
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on overlay click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+            if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+                navigate(-1);
+            }
+            if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+                navigate(1);
+            }
+        });
+
+        // Navigation
+        function navigate(direction) {
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            updateLightboxImage();
+        }
+
+        lightboxPrev.addEventListener('click', () => navigate(-1));
+        lightboxNext.addEventListener('click', () => navigate(1));
+
+        // Update lightbox image
+        function updateLightboxImage() {
+            lightboxImg.src = images[currentIndex].src;
+            lightboxImg.alt = images[currentIndex].alt;
+        }
+    </script>
+</body>
+
+</html>
