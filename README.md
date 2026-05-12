@@ -13,7 +13,6 @@ By integrating cinematic video, ambient audio, and structured web narratives, we
 ## 👥 The Production Team
 - **Hamza Hassan**: Lead Developer & Content Curator (Cairo).
 - **Theodoros Vassallo**: Lead Media Producer (Mani Video).
-- **Alex Tsiolis**: Media Production Contributor.
 - **Saif Issa**: Strategy & Production Testing.
 - **Pavlos Mitsis**: Content Organization & Quality Control.
 
